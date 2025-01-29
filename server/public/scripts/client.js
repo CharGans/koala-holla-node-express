@@ -101,11 +101,22 @@ koalas.forEach((koala) => {
             <td>${koala.favorite_color}</td>
             <td>${koala.ready_to_transfer}</td>
             <td>${koala.notes}</td>
+            <td><button onClick="deleteKoala(${koala.id})"> DELETE</button></td>
             </tr>
   
   `
 })
 };
+
+function deleteKoala(koalaId) {
+  axios.delete(`/koalas/${koalaId}`).then((response) => {
+    getKoalas();
+  }).catch((error) => {
+    console.log('error', error);
+    alert('an error occured');
+});
+    
+  }
 
 // Is this for part 2?
 function saveKoala(){
